@@ -1,0 +1,4 @@
+/mysql/*
+/mysql-files/*
+/logs/*
+/nginx/blog.api.conf
