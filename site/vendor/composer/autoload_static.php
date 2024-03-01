@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit67291bfa70f3b3d2d1d089612d863a88
 {
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Pecee\\' => 6,
+        ),
         'A' => 
         array (
             'Artem\\Blogapi\\' => 14,
@@ -14,6 +18,10 @@ class ComposerStaticInit67291bfa70f3b3d2d1d089612d863a88
     );
 
     public static $prefixDirsPsr4 = array (
+        'Pecee\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pecee/simple-router/src/Pecee',
+        ),
         'Artem\\Blogapi\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

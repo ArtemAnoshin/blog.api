@@ -12,5 +12,7 @@
             "email": "artem-anoshin@yandex.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "pecee/simple-router": "5.4.1.7"
+    }
 }

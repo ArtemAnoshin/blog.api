@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Pecee\\' => array($vendorDir . '/pecee/simple-router/src/Pecee'),
     'Artem\\Blogapi\\' => array($baseDir . '/src'),
 );
