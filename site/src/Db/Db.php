@@ -40,4 +40,9 @@ class DB
     {
         return self::$db->prepare($query, $params);
     }
+
+    public static function lastInsertId()
+    {
+        return self::$db->lastInsertId();
+    }
 }

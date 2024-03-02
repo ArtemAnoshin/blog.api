@@ -4,6 +4,8 @@ namespace Artem\Blogapi\Service;
 
 use Artem\Blogapi\Repository\ArticleRepository;
 use Artem\Blogapi\Entity\Article;
+use Artem\Blogapi\Manager\ArticleManager;
+use Pecee\Http\Input\InputHandler;
 
 class ArticleService
 {
@@ -21,5 +23,14 @@ class ArticleService
         }
 
         return false;
+    }
+
+    public function createArticle(InputHandler $request): int
+    {
+        $article = new Article();
+        $article->setAuthorName($request->value('author_name'))
+            ->setBody($request->value('body'));
+
+        return (new ArticleManager())->create($article);
     }
 }

@@ -11,6 +11,12 @@ SimpleRouter::get('/forbidden', [ForbiddenController::class, 'index']);
 
 SimpleRouter::error(function(Request $request, \Exception $exception) {
     switch($exception->getCode()) {
+        // Invalid Arguments
+        case 422:
+            response()->json([
+                'success' => 'false',
+                'message'  => $exception->getMessage(),
+            ]);
         // Page not found
         case 404:
             response()->redirect('/not-found');
@@ -22,6 +28,7 @@ SimpleRouter::error(function(Request $request, \Exception $exception) {
 });
 
 // Article
-SimpleRouter::get('/article/{id}', [ArticleController::class, 'index'])->where([ 'id' => '[0-9]+' ]);
+SimpleRouter::get('/article/{id}', [ArticleController::class, 'read'])->where([ 'id' => '[0-9]+' ]);
+SimpleRouter::post('/article', [ArticleController::class, 'create']);
 
 // Comment
