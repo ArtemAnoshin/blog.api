@@ -3,6 +3,7 @@
 use Artem\Blogapi\Controller\NotFoundController;
 use Artem\Blogapi\Controller\ForbiddenController;
 use Artem\Blogapi\Controller\ArticleController;
+use Artem\Blogapi\Controller\CommentController;
 use Pecee\SimpleRouter\SimpleRouter;
 use Pecee\Http\Request;
 
@@ -32,3 +33,4 @@ SimpleRouter::get('/article/{id}', [ArticleController::class, 'read'])->where([ 
 SimpleRouter::post('/article', [ArticleController::class, 'create']);
 
 // Comment
+SimpleRouter::post('/comment', [CommentController::class, 'create']);

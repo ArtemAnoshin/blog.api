@@ -2,11 +2,12 @@
 
 namespace Artem\Blogapi\Controller;
 
-use Artem\Blogapi\Service\ArticleService;
-use Artem\Blogapi\Validator\ArticleValidator;
+use Artem\Blogapi\Service\CommentService;
+use Artem\Blogapi\Validator\CommentValidator;
 
-class ArticleController
+class CommentController
 {
+    /*
     public function read(int $id)
     {
         $service = new ArticleService();
@@ -24,20 +25,22 @@ class ArticleController
             'message'  => 'Article not found.',
         ]);
     }
+    */
 
     public function create()
     {
-        $validator = new ArticleValidator();
+        $validator = new CommentValidator();
         $validator->validate(input());
 
-        $service = new ArticleService();
-        $id = $service->createArticle(input());
+
+        $service = new CommentService();
+        $id = $service->createComment(input());
 
         if ($id) {
             response()->httpCode(201);
             response()->json([
                 'success' => 'ok',
-                'article_id'  => $id,
+                'comment_id'  => $id,
             ]);
         }
 
