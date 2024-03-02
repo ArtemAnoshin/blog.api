@@ -2,15 +2,25 @@
 
 namespace Artem\Blogapi\Controller;
 
-use Artem\Blogapi\Repository\ArticleRepository;
+use Artem\Blogapi\Service\ArticleService;
 
 class ArticleController
 {
     public function index(int $id)
     {
-        $article = ArticleRepository::getById($id);
+        $service = new ArticleService();
+        $article = $service->getArticleById($id);
 
-        print_r($article);
-        echo $id;
+        if ($article) {
+            response()->json([
+                'success' => 'ok',
+                'data'  => $article->asArray(),
+            ]);
+        }
+
+        response()->json([
+            'success' => 'false',
+            'message'  => 'Article not found.',
+        ]);
     }
 }
