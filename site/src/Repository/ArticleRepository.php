@@ -16,4 +16,14 @@ class ArticleRepository
         $query->execute(['id' => $id]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function articleExistsById(int $id): array|bool
+    {
+        $db = Db::getInstance();
+
+        $sql = "SELECT id FROM article WHERE id = :id";
+        $query = $db::prepare($sql);
+        $query->execute(['id' => $id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
 }
