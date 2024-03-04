@@ -5,10 +5,13 @@ namespace Artem\Blogapi\Service;
 use Artem\Blogapi\Repository\ArticleRepository;
 use Artem\Blogapi\Entity\Article;
 use Artem\Blogapi\Manager\ArticleManager;
+use Artem\Blogapi\Model\ArticlesWithCommentsCollection;
 use Pecee\Http\Input\InputHandler;
 
 class ArticleService
 {
+    const MAX_COUNT_IN_LIST = 15;
+
     public function getArticleById(int $id): Article|bool
     {
         $result = ArticleRepository::getById($id);
@@ -32,5 +35,31 @@ class ArticleService
             ->setBody($request->value('body'));
 
         return (new ArticleManager())->create($article);
+    }
+
+    public function getArticles(InputHandler $request): array|bool
+    {
+        $maxCount = $request->value('count') ?? self::MAX_COUNT_IN_LIST;
+        $page = $request->value('page') ?? 1;
+
+        $result = ArticleRepository::getArticles($maxCount, $page);
+
+        if (empty($result)) {
+            return false;
+        }
+
+        return $this->buildArticleList($result);
+    }
+
+    private function buildArticleList(array $collection): array
+    {
+        $articleCommentsCollection = new ArticlesWithCommentsCollection();
+
+        foreach ($collection as $element)
+        {
+            $articleCommentsCollection->addToCollection($element);
+        }
+
+        return $articleCommentsCollection->collection;
     }
 }

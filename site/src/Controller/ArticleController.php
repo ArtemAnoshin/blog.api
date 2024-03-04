@@ -46,4 +46,22 @@ class ArticleController
             'message'  => 'Something went wrong.',
         ]);
     }
+
+    public function list()
+    {
+        $service = new ArticleService();
+        $articles = $service->getArticles(input());
+
+        if ($articles) {
+            response()->json([
+                'success' => 'ok',
+                'data'  => $articles,
+            ]);
+        }
+
+        response()->json([
+            'success' => 'false',
+            'message'  => 'No articles found.',
+        ]);
+    }
 }
