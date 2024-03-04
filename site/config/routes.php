@@ -31,6 +31,7 @@ SimpleRouter::error(function(Request $request, \Exception $exception) {
 // Article
 SimpleRouter::get('/articles', [ArticleController::class, 'list']);
 SimpleRouter::get('/article/{id}', [ArticleController::class, 'read'])->where([ 'id' => '[0-9]+' ]);
+SimpleRouter::get('/article/{id}/comments', [ArticleController::class, 'comments'])->where([ 'id' => '[0-9]+' ]);
 SimpleRouter::post('/article', [ArticleController::class, 'create']);
 
 // Comment

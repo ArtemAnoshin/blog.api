@@ -64,4 +64,23 @@ class ArticleRepository
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getCommentsByArticleId(int $id): array
+    {
+        $db = Db::getInstance();
+
+        $sql = "
+            SELECT 
+                comment.id as comment_id,
+                comment.comment_author as comment_author,
+                comment.body as comment_text
+            FROM comment
+            WHERE
+                comment.article_id = :id
+            LIMIT 100
+        ";
+        $query = $db::prepare($sql);
+        $query->execute(['id' => $id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -51,6 +51,11 @@ class ArticleService
         return $this->buildArticleList($result);
     }
 
+    public function getCommentsByArticleId(int $id): array
+    {
+        return ArticleRepository::getCommentsByArticleId($id);
+    }
+
     private function buildArticleList(array $collection): array
     {
         $articleCommentsCollection = new ArticlesWithCommentsCollection();

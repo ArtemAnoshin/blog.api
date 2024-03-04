@@ -64,4 +64,22 @@ class ArticleController
             'message'  => 'No articles found.',
         ]);
     }
+
+    public function comments(int $id)
+    {
+        $service = new ArticleService();
+        $comments = $service->getCommentsByArticleId($id);
+
+        if ($comments) {
+            response()->json([
+                'success' => 'ok',
+                'data'  => $comments,
+            ]);
+        }
+
+        response()->json([
+            'success' => 'false',
+            'message'  => 'The article has no comments.',
+        ]);
+    }
 }
