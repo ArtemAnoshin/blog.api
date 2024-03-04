@@ -2,8 +2,6 @@
 
 namespace Artem\Blogapi\Service;
 
-use Artem\Blogapi\Repository\ArticleRepository;
-use Artem\Blogapi\Entity\Article;
 use Artem\Blogapi\Entity\Comment;
 use Artem\Blogapi\Manager\CommentManager;
 use Pecee\Http\Input\InputHandler;

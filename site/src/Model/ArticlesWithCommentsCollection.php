@@ -13,20 +13,22 @@ class ArticlesWithCommentsCollection
                 'article_id' => $element['article_id'],
                 'author_name' => $element['author_name'],
                 'article_text' => $element['article_text'],
-                'comments' => [
-                    [
-                        'comment_id' => $element['comment_id'],
-                        'comment_author' => $element['comment_author'],
-                        'comment_text' => $element['comment_text'],
-                    ]
-                ],
             ];
+            if (!empty($element['comment_id'])) {
+                $this->collection[$element['article_id']]['comments'][] = [
+                    'comment_id' => $element['comment_id'],
+                    'comment_author' => $element['comment_author'],
+                    'comment_text' => $element['comment_text'],
+                ];
+            }
         } else {
-            $this->collection[$element['article_id']]['comments'][] = [
-                'comment_id' => $element['comment_id'],
-                'comment_author' => $element['comment_author'],
-                'comment_text' => $element['comment_text'],
-            ];
+            if (!empty($element['comment_id'])) {
+                $this->collection[$element['article_id']]['comments'][] = [
+                    'comment_id' => $element['comment_id'],
+                    'comment_author' => $element['comment_author'],
+                    'comment_text' => $element['comment_text'],
+                ];
+            }
         }
     }
 

@@ -45,7 +45,7 @@ class ArticleRepository
             LEFT JOIN comment
             ON article.id=comment.article_id
 
-            WHERE comment.id IN (
+            AND comment.id IN (
             SELECT t.id FROM (
                     SELECT 
                         comment.id
