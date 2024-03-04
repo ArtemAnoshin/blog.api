@@ -14,3 +14,10 @@ CREATE TABLE comment
     CONSTRAINT FK_ArticleComment FOREIGN KEY (article_id)
     REFERENCES article(id)
 );
+
+ALTER TABLE comment
+ADD created_at DATETIME NULL;
+
+ALTER TABLE comment
+   ADD UNIQUE `comment_author_1_per_second`(`created_at`, `comment_author`)
+;

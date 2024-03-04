@@ -18,7 +18,7 @@ class CommentManager
             throw new InvalidArgumentException('Article is not found', 422); 
         }
 
-        $sql = "INSERT INTO comment (comment_author, body, article_id) VALUES (:comment_author, :body, :article_id);";
+        $sql = "INSERT INTO comment (comment_author, body, article_id, created_at) VALUES (:comment_author, :body, :article_id, :created_at);";
         $query = $db::prepare($sql);
 
         try {
@@ -26,11 +26,12 @@ class CommentManager
                 'comment_author' => $comment->getCommentAuthor(),
                 'body' => $comment->getBody(),
                 'article_id' => $comment->getArticleId(),
+                'created_at' => $comment->getCreatedAt(),
             ]);
 
             return $db::lastInsertId();
         } catch (Exception $ex) {
-            throw new InvalidArgumentException($ex->getMessage(), $ex->getCode());
+               throw new InvalidArgumentException($ex->getMessage(), 422);
         }
     }
 }

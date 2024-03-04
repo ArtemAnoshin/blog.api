@@ -2,17 +2,21 @@
 
 namespace Artem\Blogapi\Entity;
 
+use DateTimeImmutable;
+
 class Comment
 {
     private ?int $id;
     private string $commentAuthor;
     private string $body;
     private int $articleId;
+    private ?DateTimeImmutable $createdAt;
 
     public function getId(): int|null { return $this->id; }
     public function getCommentAuthor(): string { return $this->commentAuthor; }
     public function getBody(): string { return $this->body; }
     public function getArticleId(): int { return $this->articleId; }
+    public function getCreatedAt(): string { return $this->createdAt->format('Y-m-d H:i'); }
 
     public function setId(int $id): static
     {
@@ -42,24 +46,10 @@ class Comment
         return $this;
     }
 
-    /*
-    public function asArray()
+    public function setCreatedAt(): static
     {
-        $result = [];
+        $this->createdAt = new DateTimeImmutable();
 
-        if ($this->getId()) {
-            $result['id'] = $this->getId();
-        }
-
-        if ($this->getAuthorName()) {
-            $result['author_name'] = $this->getAuthorName();
-        }
-
-        if ($this->getBody()) {
-            $result['body'] = $this->getBody();
-        }
-
-        return $result;
+        return $this;
     }
-    */
 }
