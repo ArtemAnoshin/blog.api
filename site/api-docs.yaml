@@ -1,0 +1,176 @@
+openapi: 3.0.0
+info:
+  title: 'My Blog API'
+  version: '0.1'
+paths:
+  '/article/{id}':
+    get:
+      tags:
+        - Article
+      operationId: 8819db66e1e0e93e61799533e1d922bd
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Статья найдена.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: string, example: ok }
+                  data: { properties: { id: { type: integer }, author_name: { type: string }, body: { type: string } }, type: object }
+                type: object
+        '404':
+          description: 'Статья не найдена.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: number, example: 'false' }
+                  message: { type: string, example: 'Article not found.' }
+                type: object
+  /article:
+    post:
+      tags:
+        - Article
+      operationId: 7777db05d06a1d704c5a00cc29f6de6d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                author_name:
+                  type: string
+                body:
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: 'Статья успешно добавлена.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: string, example: ok }
+                  article_id: { type: integer }
+                type: object
+        '422':
+          description: 'Что-то пошло не так. Попробуйте еще раз.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: number, example: 'false' }
+                  message: { type: string, example: 'Something went wrong.' }
+                type: object
+  /articles:
+    get:
+      tags:
+        - Article
+      operationId: 7fecf573767cf0c6e7b777c606948739
+      parameters:
+        -
+          name: count
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Список статей с комментариями.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: string, example: ok }
+                  data: { type: array, items: { properties: { article_id: { type: integer }, author_name: { type: string }, article_text: { type: string }, comments: { type: array, items: { properties: { comment_id: { type: integer }, comment_author: { type: string }, comment_text: { type: string } }, type: object } } }, type: object } }
+                type: object
+        '404':
+          description: 'Статей не найдено.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: number, example: 'false' }
+                  message: { type: string, example: 'No articles found.' }
+                type: object
+  '/article/{id}/comments':
+    get:
+      tags:
+        - Article
+      operationId: a465fe26f820b7ba49df476d7978384d
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Комментарии для статьи.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: string, example: ok }
+                  data: { type: array, items: { properties: { comment_id: { type: integer }, comment_author: { type: string }, comment_text: { type: string } }, type: object } }
+                type: object
+        '404':
+          description: 'Комментарии для статьи отсутствуют.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: number, example: 'false' }
+                  message: { type: string, example: 'The article has no comments.' }
+                type: object
+  /comment:
+    post:
+      tags:
+        - Comment
+      operationId: 3473ca008d2244e15b897e4a52c5e5a0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                comment_author:
+                  type: string
+                body:
+                  type: string
+                article_id:
+                  type: integer
+              type: object
+      responses:
+        '200':
+          description: 'Комментарий добавлен.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: string, example: ok }
+                  comment_id: { type: integer }
+                type: object
+        '422':
+          description: 'Что-то пошло не так. Попробуйте еще раз.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  success: { type: number, example: 'false' }
+                  message: { type: string, example: 'Something went wrong.' }
+                type: object

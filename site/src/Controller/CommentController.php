@@ -7,26 +7,52 @@ use Artem\Blogapi\Validator\CommentValidator;
 
 class CommentController
 {
-    /*
-    public function read(int $id)
-    {
-        $service = new ArticleService();
-        $article = $service->getArticleById($id);
-
-        if ($article) {
-            response()->json([
-                'success' => 'ok',
-                'data'  => $article->asArray(),
-            ]);
-        }
-
-        response()->json([
-            'success' => 'false',
-            'message'  => 'Article not found.',
-        ]);
-    }
-    */
-
+    /**
+     * @OA\Post(
+     *     tags={"Comment"},
+     *     path="/comment",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="comment_author", type="string"),
+     *              @OA\Property(
+     *                  property="body",
+     *                  type="string",
+     *              ),
+     *              @OA\Property(
+     *                  property="article_id",
+     *                  type="integer",
+     *              ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Комментарий добавлен.",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="success", type="string", example="ok"),
+     *              @OA\Property(
+     *                  property="comment_id",
+     *                  type="integer",
+     *              ),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Что-то пошло не так. Попробуйте еще раз.",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="success", type="number", example="false"),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Something went wrong."
+     *              ),
+     *         ),
+     *     )
+     * )
+     */
     public function create()
     {
         $validator = new CommentValidator();

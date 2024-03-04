@@ -13,6 +13,8 @@
         }
     ],
     "require": {
-        "pecee/simple-router": "5.4.1.7"
+        "pecee/simple-router": "5.4.1.7",
+        "zircote/swagger-php": "^4.8",
+        "doctrine/annotations": "^2.0"
     }
 }

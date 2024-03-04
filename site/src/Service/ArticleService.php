@@ -65,6 +65,6 @@ class ArticleService
             $articleCommentsCollection->addToCollection($element);
         }
 
-        return $articleCommentsCollection->collection;
+        return array_values($articleCommentsCollection->collection);
     }
 }
