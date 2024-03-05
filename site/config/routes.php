@@ -1,8 +1,10 @@
 <?php
 
+use Artem\Blogapi\Middleware\AuthenticateMiddleware;
 use Artem\Blogapi\Controller\NotFoundController;
 use Artem\Blogapi\Controller\ForbiddenController;
 use Artem\Blogapi\Controller\ArticleController;
+use Artem\Blogapi\Controller\AuthController;
 use Artem\Blogapi\Controller\CommentController;
 use Pecee\SimpleRouter\SimpleRouter;
 use Pecee\Http\Request;
@@ -35,4 +37,13 @@ SimpleRouter::get('/article/{id}/comments', [ArticleController::class, 'comments
 SimpleRouter::post('/article', [ArticleController::class, 'create']);
 
 // Comment
-SimpleRouter::post('/comment', [CommentController::class, 'create']);
+SimpleRouter::group([
+    'middleware' => [
+        AuthenticateMiddleware::class
+    ]
+], function () {
+    SimpleRouter::post('/comment', [CommentController::class, 'create']);
+});
+
+// User Login
+SimpleRouter::post('/login', [AuthController::class, 'login']);

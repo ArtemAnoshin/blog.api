@@ -1,7 +1,6 @@
 <?php
 
 use Pecee\SimpleRouter\SimpleRouter;
-use Pecee\Http\Request;
 
 require 'vendor/autoload.php';
 

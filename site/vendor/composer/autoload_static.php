@@ -21,12 +21,18 @@ class ComposerStaticInit67291bfa70f3b3d2d1d089612d863a88
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
             'Pecee\\' => 6,
         ),
         'O' => 
         array (
             'OpenApi\\' => 8,
+        ),
+        'L' => 
+        array (
+            'Lcobucci\\JWT\\' => 13,
+            'Lcobucci\\Clock\\' => 15,
         ),
         'D' => 
         array (
@@ -56,6 +62,10 @@ class ComposerStaticInit67291bfa70f3b3d2d1d089612d863a88
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
         ),
+        'Psr\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/clock/src',
+        ),
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
@@ -67,6 +77,14 @@ class ComposerStaticInit67291bfa70f3b3d2d1d089612d863a88
         'OpenApi\\' => 
         array (
             0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
+        ),
+        'Lcobucci\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/clock/src',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
