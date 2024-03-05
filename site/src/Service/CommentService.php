@@ -11,9 +11,9 @@ class CommentService
     public function createComment(InputHandler $request): int
     {
         $comment = new Comment();
-        $comment->setCommentAuthor($request->value('comment_author'))
-            ->setBody($request->value('body'))
-            ->setArticleId($request->value('article_id'))
+        $comment->setCommentAuthor($request->post('comment_author')->value)
+            ->setBody($request->post('body')->value)
+            ->setArticleId($request->post('article_id')->value)
             ->setCreatedAt();
 
         return (new CommentManager())->create($comment);

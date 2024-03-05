@@ -31,8 +31,8 @@ class ArticleService
     public function createArticle(InputHandler $request): int
     {
         $article = new Article();
-        $article->setAuthorName($request->value('author_name'))
-            ->setBody($request->value('body'));
+        $article->setAuthorName($request->post('author_name')->value)
+            ->setBody($request->post('body')->value);
 
         return (new ArticleManager())->create($article);
     }

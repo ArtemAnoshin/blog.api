@@ -13,7 +13,7 @@ class ArticleValidator
             throw new InvalidArgumentException('Author name is required', 422);
         }
 
-        if (strlen($request->value('author_name')) > 255) {
+        if (strlen($request->post('author_name')->value) > 255) {
             throw new InvalidArgumentException('The author\'s name cannot be more than 255 characters', 422);
         }
 
@@ -21,7 +21,7 @@ class ArticleValidator
             throw new InvalidArgumentException('Body is required', 422);
         }
 
-        if (strlen($request->value('body')) > 5000) {
+        if (strlen($request->post('body')->value) > 5000) {
             throw new InvalidArgumentException('The body cannot be more than 5000 characters', 422);
         }
     }

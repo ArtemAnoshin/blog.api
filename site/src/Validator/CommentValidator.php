@@ -13,7 +13,7 @@ class CommentValidator
             throw new InvalidArgumentException('Author name is required', 422);
         }
 
-        if (strlen($request->value('comment_author')) > 255) {
+        if (strlen($request->post('comment_author')->value) > 255) {
             throw new InvalidArgumentException('The author\'s name cannot be more than 255 characters', 422);
         }
 
@@ -21,7 +21,7 @@ class CommentValidator
             throw new InvalidArgumentException('Body is required', 422);
         }
 
-        if (strlen($request->value('body')) > 200) {
+        if (strlen($request->post('body')->value) > 200) {
             throw new InvalidArgumentException('The body cannot be more than 200 characters', 422);
         }
 
